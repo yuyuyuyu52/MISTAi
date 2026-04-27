@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
+import { MotionConfig } from "motion/react";
 import { I18nProvider, useI18n } from "./i18n";
 
 import Home from "./pages/Home";
@@ -159,9 +160,17 @@ const Footer = () => {
 };
 
 export default function App() {
+  const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" && window.innerWidth < 768);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <BrowserRouter>
       <I18nProvider>
+        <MotionConfig reducedMotion={isMobile ? "always" : "user"}>
         <div className="relative bg-white text-slate-900 selection:bg-mist-blue selection:text-white">
           <div className="noise-overlay" />
           <Nav />
@@ -178,6 +187,7 @@ export default function App() {
           </main>
           <Footer />
         </div>
+        </MotionConfig>
       </I18nProvider>
     </BrowserRouter>
   );
