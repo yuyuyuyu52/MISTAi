@@ -74,8 +74,8 @@ const translations = {
   "investment.heading1": { zh: "资本驱动", en: "CAPITAL-DRIVEN" },
   "investment.heading2": { zh: "产业跃迁", en: "GROWTH" },
   "investment.desc": {
-    zh: "从天使轮到成长期，MIST Ai 提供全周期资本支持与深度孵化服务，精准链接产业资本与技术创业者，助力完成关键跃迁。",
-    en: "From angel round to growth stage, MIST Ai provides full-cycle capital support and deep incubation services, precisely connecting industry capital with tech entrepreneurs.",
+    zh: "MIST Ai 依托新加坡 1 亿美金资金池，覆盖从种子轮到成长期的全周期资本服务。我们不只提供资金——从技术架构评审、商业模式打磨、GTM 策略落地到产业资源对接，以「资本 + 孵化 + 增长」三位一体的模式，精准链接产业资本与 AI 技术创业者，助力项目完成从 0 到 N 的关键跃迁。",
+    en: "Backed by a US$100M fund pool based in Singapore, MIST Ai delivers full-cycle capital services from seed round through growth stage. We go beyond funding — from technical architecture review, business model refinement, and GTM strategy execution to industry resource matching. Our integrated \"Capital + Incubation + Growth\" model precisely connects industry capital with AI tech founders, powering the critical 0-to-N leap.",
   },
   "investment.card1.title": { zh: "早期投资", en: "Early-Stage Investment" },
   "investment.card1.desc": {
