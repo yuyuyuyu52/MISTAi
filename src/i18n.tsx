@@ -7,7 +7,7 @@ const translations = {
   "nav.home": { zh: "首页", en: "Home" },
   "nav.about": { zh: "关于我们", en: "About" },
   "nav.services": { zh: "服务", en: "Services" },
-  "nav.services.investment": { zh: "投融资", en: "Investment & Financing" },
+  "nav.services.investment": { zh: "资本与孵化", en: "Capital & Incubation" },
   "nav.services.agentGlobal": { zh: "AI Agent 出海", en: "AI Agent Global" },
   "nav.services.consulting": { zh: "AI 咨询落地", en: "AI Consulting" },
   "nav.knowledge": { zh: "知识星球", en: "Knowledge Hub" },
@@ -280,7 +280,7 @@ const translations = {
     zh: "聚焦早期 AI 项目投资，曾成功孵化 SpatialWolk、瞰影科技等前沿项目，打通融资与成长的快车道。",
     en: "Focused on early-stage AI project investment, having successfully incubated cutting-edge projects like SpatialWolk and KanYing Tech, building the fast track from funding to growth.",
   },
-  "about.engine2.title": { zh: "全球 GTM 增长服务", en: "Global GTM Growth" },
+  "about.engine2.title": { zh: "AI Agent出海", en: "AI Agent Global" },
   "about.engine2.desc": {
     zh: "专注 AI Agent 出海营销，提供从 GTM 策略规划、Product Hunt 联创、海外 KOL 联动到 SEO/GEO 与广告投放的全栈式服务，助力品牌构建精准转化的增长飞轮。",
     en: "Focused on AI Agent global marketing, providing full-stack services from GTM strategy planning, Product Hunt co-launch, overseas KOL partnerships to SEO/GEO and paid ads, helping brands build a precision-driven growth flywheel.",

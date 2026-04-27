@@ -5,7 +5,6 @@
 
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
-import { CaretDown } from "@phosphor-icons/react";
 import { I18nProvider, useI18n } from "./i18n";
 
 import Home from "./pages/Home";
@@ -18,7 +17,6 @@ import Events from "./pages/Events";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
   const { lang, setLang, t } = useI18n();
   const location = useLocation();
 
@@ -36,13 +34,10 @@ const Nav = () => {
 
   const navItems = [
     { to: "/", label: t("nav.home") },
-    { to: "/about", label: t("nav.about") },
-  ];
-
-  const servicesSub = [
     { to: "/services/investment", label: t("nav.services.investment") },
     { to: "/services/agent-global", label: t("nav.services.agentGlobal") },
     { to: "/services/consulting", label: t("nav.services.consulting") },
+    { to: "/events", label: t("nav.events") },
   ];
 
   return (
@@ -65,50 +60,6 @@ const Nav = () => {
             {item.label}
           </Link>
         ))}
-
-        {/* Services dropdown */}
-        <div
-          className="relative"
-          onMouseEnter={() => setServicesOpen(true)}
-          onMouseLeave={() => setServicesOpen(false)}
-        >
-          <Link
-            to="/services"
-            className={`text-xs font-bold transition-colors tracking-widest uppercase flex items-center gap-1 ${
-              isActive("/services") ? "text-mist-blue" : "text-slate-500 hover:text-mist-blue"
-            }`}
-          >
-            {t("nav.services")}
-            <CaretDown className={`w-3 h-3 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-          </Link>
-
-          <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${servicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
-            <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-black/5 shadow-xl shadow-black/5 py-3 px-2 min-w-[200px]">
-              {servicesSub.map(sub => (
-                <Link
-                  key={sub.to}
-                  to={sub.to}
-                  className={`block px-4 py-2.5 text-[11px] font-bold tracking-wider rounded-xl transition-all ${
-                    isActive(sub.to)
-                      ? "text-mist-blue bg-mist-blue/5"
-                      : "text-slate-500 hover:text-mist-blue hover:bg-slate-50"
-                  }`}
-                >
-                  {sub.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <Link
-          to="/events"
-          className={`text-xs font-bold transition-colors tracking-widest uppercase ${
-            isActive("/events") ? "text-mist-blue" : "text-slate-500 hover:text-mist-blue"
-          }`}
-        >
-          {t("nav.events")}
-        </Link>
       </div>
 
       <div className="flex items-center gap-3">
