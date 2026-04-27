@@ -26,10 +26,6 @@ export default function Knowledge() {
           transition={{ duration: 0.8 }}
           className="relative z-10 max-w-4xl"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-md border border-black/5 text-slate-600 text-[10px] font-bold tracking-[0.2em] mb-10 uppercase shadow-sm">
-            <BookOpen className="w-3 h-3 text-mist-accent" />
-            {t("knowledge.badge")}
-          </div>
           <h1 className="heading-xl mb-10 text-slate-900">
             {t("knowledge.heading1")} <br />
             <span className="cool-gradient-text">{t("knowledge.heading2")}</span>

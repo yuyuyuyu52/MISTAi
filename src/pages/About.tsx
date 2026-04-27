@@ -124,14 +124,6 @@ const GlobeSection = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mist-green/10 border border-mist-green/20 text-mist-green text-[10px] font-bold tracking-[0.3em] mb-8 uppercase"
-            >
-              <Globe className="w-3 h-3" />
-              {t("global.badge")}
-            </motion.div>
             <h2 className="heading-xl text-slate-900 mb-8 leading-tight">
               {t("global.heading1")}<span className="cool-gradient-text">{t("global.heading2")}</span>
             </h2>
@@ -232,10 +224,6 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="relative z-10 max-w-4xl"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-md border border-black/5 text-slate-600 text-[10px] font-bold tracking-[0.2em] mb-10 uppercase shadow-sm">
-            <Globe className="w-3 h-3 text-mist-green" />
-            {t("about.badge")}
-          </div>
           <h1 className="heading-xl mb-10 text-slate-900">
             {t("about.heading1")} <br />
             <span className="cool-gradient-text">{t("about.heading2")}</span>
