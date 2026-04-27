@@ -107,7 +107,7 @@ const GlobeSection = () => {
   ];
 
   return (
-    <section className="relative py-32 px-6 overflow-hidden rounded-[4rem] mx-6 mb-12 bg-white border border-slate-100">
+    <section className="relative py-16 md:py-32 px-6 overflow-hidden rounded-[2rem] md:rounded-[4rem] mx-4 md:mx-6 mb-8 md:mb-12 bg-white border border-slate-100">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <motion.div
           animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
@@ -212,7 +212,7 @@ export default function About() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
+      <section className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
         <div className="fresh-bg" />
         <FloatingOrb color="#00d98b" size="35vw" top="-10%" left="60%" delay={0} />
         <FloatingOrb color="#0070f3" size="30vw" top="50%" left="-5%" delay={3} />
@@ -235,9 +235,9 @@ export default function About() {
       </section>
 
       {/* Three Growth Engines */}
-      <section className="py-32 px-6 bg-slate-50/50">
+      <section className="py-16 md:py-32 px-6 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-10 md:mb-20">
             <span className="text-mist-green font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">{t("about.engines.badge")}</span>
             <h2 className="heading-lg text-slate-900">{t("about.engines.title")}</h2>
           </div>
@@ -287,7 +287,7 @@ export default function About() {
       <GlobeSection />
 
       {/* Industry Ecosystem */}
-      <section className="py-32 px-6 bg-slate-50/50">
+      <section className="py-16 md:py-32 px-6 bg-slate-50/50">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

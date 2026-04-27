@@ -30,7 +30,7 @@ export default function Events() {
       <FloatingOrb color="#0070f3" size="18vw" top="50%" left="80%" delay={1} />
       <FloatingOrb color="#7928ca" size="16vw" top="70%" left="5%" delay={4} />
       <div className="relative z-10">
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
+      <section className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ export default function Events() {
         </motion.div>
       </section>
 
-      <section className="py-32 px-6">
+      <section className="py-16 md:py-32 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col gap-6">
             {events.map((event, i) => (

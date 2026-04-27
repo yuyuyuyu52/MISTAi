@@ -21,7 +21,7 @@ export default function Knowledge() {
       <FloatingOrb color="#7928ca" size="18vw" top="50%" left="80%" delay={1} />
       <FloatingOrb color="#00d98b" size="16vw" top="70%" left="5%" delay={4} />
       <div className="relative z-10">
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
+      <section className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -38,9 +38,9 @@ export default function Knowledge() {
         </motion.div>
       </section>
 
-      <section className="py-32 px-6 bg-slate-50/50">
+      <section className="py-16 md:py-32 px-6 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 md:mb-20">
             {features.map((feat, i) => (
               <motion.div
                 key={feat.titleKey}

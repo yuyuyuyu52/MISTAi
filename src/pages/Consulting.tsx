@@ -49,7 +49,7 @@ export default function Consulting() {
       <div className="relative z-10">
 
         {/* Hero */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
+        <section className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -67,9 +67,9 @@ export default function Consulting() {
         </section>
 
         {/* Services */}
-        <section className="py-32 px-6 bg-slate-50/50">
+        <section className="py-16 md:py-32 px-6 bg-slate-50/50">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-16 text-center">
+            <div className="mb-10 md:mb-16 text-center">
               <p className="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
                 {t("consulting.services.desc")}
               </p>
@@ -90,9 +90,9 @@ export default function Consulting() {
         </section>
 
         {/* Process */}
-        <section className="py-32 px-6 bg-slate-50/50">
+        <section className="py-16 md:py-32 px-6 bg-slate-50/50">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-20 text-center">
+            <div className="mb-10 md:mb-20 text-center">
               <p className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
                 {t("consulting.process.desc")}
               </p>
@@ -120,9 +120,9 @@ export default function Consulting() {
         </section>
 
         {/* Tech Stack */}
-        <section className="py-32 px-6">
+        <section className="py-16 md:py-32 px-6">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-20 text-center">
+            <div className="mb-10 md:mb-20 text-center">
               <h2 className="heading-lg text-slate-900">{t("consulting.tech.badge")}</h2>
             </div>
             <div className="flex flex-col gap-4">
