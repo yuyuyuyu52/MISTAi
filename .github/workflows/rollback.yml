@@ -1,0 +1,48 @@
+name: Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Release directory name (e.g. "2026-04-27-abc1234") or "previous" for the last version'
+        required: true
+        default: previous
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rollback production
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          RELEASE: ${{ github.event.inputs.release }}
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
+
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no "$SERVER_USER@$SERVER_HOST" bash -s "$RELEASE" << 'REMOTE'
+            set -e
+            RELEASE_INPUT="$1"
+
+            if [ "$RELEASE_INPUT" = "previous" ]; then
+              CURRENT=$(readlink /var/www/mistai/production | xargs basename)
+              TARGET=$(ls -1dt /var/www/mistai/releases/*/ | grep -v "$CURRENT" | head -1)
+              if [ -z "$TARGET" ]; then
+                echo "ERROR: No previous release found to roll back to"
+                exit 1
+              fi
+            else
+              TARGET="/var/www/mistai/releases/$RELEASE_INPUT"
+              if [ ! -d "$TARGET" ]; then
+                echo "ERROR: Release directory $TARGET does not exist"
+                echo "Available releases:"
+                ls -1dt /var/www/mistai/releases/*/
+                exit 1
+              fi
+            fi
+
+            ln -sfn "$TARGET" /var/www/mistai/production
+            nginx -t && systemctl reload nginx
+            echo "Rolled back to: $(readlink /var/www/mistai/production)"
+          REMOTE
