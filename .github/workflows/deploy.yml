@@ -1,0 +1,58 @@
+name: Deploy Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Deploy to server
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
+
+          RELEASE_DIR="$(date +%Y-%m-%d)-${GITHUB_SHA::7}"
+
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no "$SERVER_USER@$SERVER_HOST" \
+            "mkdir -p /var/www/mistai/releases/$RELEASE_DIR"
+
+          sshpass -p "$SERVER_PASSWORD" rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            dist/ "$SERVER_USER@$SERVER_HOST:/var/www/mistai/releases/$RELEASE_DIR/"
+
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no "$SERVER_USER@$SERVER_HOST" bash -s << REMOTE
+            ln -sfn /var/www/mistai/releases/$RELEASE_DIR /var/www/mistai/production
+            cd /var/www/mistai/releases
+            ls -1dt */ | tail -n +6 | xargs -r rm -rf
+            nginx -t && systemctl reload nginx
+          REMOTE
