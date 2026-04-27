@@ -43,14 +43,14 @@ export default function AgentGlobal() {
       <div className="relative z-10">
 
       {/* Hero */}
-      <section className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
+      <section className="relative min-h-[60vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="relative z-10 max-w-4xl"
         >
-          <h1 className="heading-xl mb-10 text-slate-900 !leading-[1.15]">
+          <h1 className="heading-xl mb-5 md:mb-10 text-slate-900 !leading-[1.15]">
             {t("agentGlobal.heading1")} <br />
             <span className="cool-gradient-text">{t("agentGlobal.heading2")}</span>
           </h1>
@@ -61,13 +61,13 @@ export default function AgentGlobal() {
       </section>
 
       {/* 1. Problem Statement */}
-      <section className="py-12 md:py-24 px-6 bg-slate-50/50">
+      <section className="py-8 md:py-24 px-6 bg-slate-50/50">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-10 md:mb-16"
+            className="text-center mb-6 md:mb-16"
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-slate-900">
               {t("agentGlobal.problem.title")}
@@ -95,9 +95,9 @@ export default function AgentGlobal() {
       </section>
 
       {/* 2. Services Coverage */}
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-32 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-10 md:mb-16">
+          <div className="text-center mb-6 md:mb-16">
             <p className="text-lg text-slate-400 font-medium max-w-2xl mx-auto">{t("agentGlobal.svc.desc")}</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -121,7 +121,7 @@ export default function AgentGlobal() {
       </section>
 
       {/* 3. Featured KOC Solution + Stats */}
-      <section className="py-16 md:py-32 px-6 bg-slate-50/50">
+      <section className="py-8 md:py-32 px-6 bg-slate-50/50">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

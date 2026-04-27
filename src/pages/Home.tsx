@@ -47,7 +47,7 @@ const Hero = () => {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
+    <section ref={containerRef} className="relative min-h-[60vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
 
       <motion.div style={{ y, opacity, scale }} className="relative z-10 max-w-6xl">
         <motion.div
@@ -55,11 +55,11 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="heading-xl mb-10 text-slate-900">
+          <h1 className="heading-xl mb-5 md:mb-10 text-slate-900">
             {t("hero.heading1")} <br />
             <span className="cool-gradient-text">{t("hero.heading2")}</span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed mb-12 font-medium">
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-12 font-medium">
             {t("hero.desc")}
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
@@ -87,7 +87,7 @@ const AboutPreview = () => {
   ];
 
   return (
-    <section className="py-16 md:py-32 px-6">
+    <section className="py-8 md:py-32 px-6">
       <motion.div
         className="max-w-7xl mx-auto"
         variants={sectionVariants}
@@ -95,7 +95,7 @@ const AboutPreview = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
       >
-        <div className="flex flex-col lg:flex-row gap-10 md:gap-20 mb-10 md:mb-16">
+        <div className="flex flex-col lg:flex-row gap-6 md:gap-20 mb-8 md:mb-16">
           <div className="lg:w-1/2">
             <motion.h2 variants={itemUp} className="heading-lg text-slate-900 mb-4">{t("home.about.badge")}</motion.h2>
             <motion.p variants={itemUp} className="text-lg md:text-xl text-slate-500 font-medium">
@@ -170,7 +170,7 @@ const ServicesPreview = () => {
   ];
 
   return (
-    <section className="py-16 md:py-32 px-6">
+    <section className="py-8 md:py-32 px-6">
       <motion.div
         className="max-w-7xl mx-auto"
         variants={sectionVariants}
@@ -178,7 +178,7 @@ const ServicesPreview = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        <div className="text-center mb-10 md:mb-20">
+        <div className="text-center mb-6 md:mb-20">
           <motion.h2 variants={itemUp} className="heading-lg text-slate-900">{t("home.services.heading")}</motion.h2>
         </div>
 
@@ -247,7 +247,7 @@ const EventsPreview = () => {
   ];
 
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-8 md:py-32">
       <motion.div
         className="max-w-5xl mx-auto px-6"
         variants={sectionVariants}
@@ -255,7 +255,7 @@ const EventsPreview = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
       >
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 md:mb-12 gap-4 md:gap-6">
           <div>
             <motion.h2 variants={itemUp} className="heading-lg text-slate-900">{t("events.heading1")}</motion.h2>
           </div>
@@ -272,7 +272,7 @@ const EventsPreview = () => {
           </motion.div>
         </div>
 
-        <motion.p variants={itemUp} className="text-slate-500 leading-relaxed font-medium mb-10 max-w-3xl">
+        <motion.p variants={itemUp} className="text-slate-500 leading-relaxed font-medium mb-6 md:mb-10 max-w-3xl">
           {t("events.desc")}
         </motion.p>
       </motion.div>
@@ -317,7 +317,7 @@ const OfficesPreview = () => {
   ];
 
   return (
-    <section className="py-16 md:py-32 px-6">
+    <section className="py-8 md:py-32 px-6">
       <motion.div
         className="max-w-5xl mx-auto"
         variants={sectionVariants}
@@ -325,7 +325,7 @@ const OfficesPreview = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="text-center mb-8 md:mb-14">
+        <div className="text-center mb-6 md:mb-14">
           <motion.h2 variants={itemUp} className="heading-lg text-slate-900">{t("global.heading1")}<span className="cool-gradient-text">{t("global.heading2")}</span></motion.h2>
         </div>
 

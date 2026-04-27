@@ -37,9 +37,9 @@ export default function Investment() {
       />
 
       {/* Portfolio / Incubation Cases */}
-      <section className="relative py-16 md:py-32 px-6">
+      <section className="relative py-8 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-10 md:mb-20">
+          <div className="mb-6 md:mb-20">
             <h2 className="heading-lg text-slate-900">{t("portfolio.heading")}</h2>
           </div>
           <div className="flex flex-col">
@@ -50,7 +50,7 @@ export default function Investment() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-8 md:gap-16 py-10 md:py-20 border-b border-black/5 last:border-0`}
+                className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-6 md:gap-16 py-6 md:py-20 border-b border-black/5 last:border-0`}
               >
                 <div className="w-full lg:w-1/2 relative group">
                   <div className="absolute -inset-4 bg-gradient-to-r from-mist-green/10 to-mist-blue/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />

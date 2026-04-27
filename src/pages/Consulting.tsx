@@ -49,14 +49,14 @@ export default function Consulting() {
       <div className="relative z-10">
 
         {/* Hero */}
-        <section className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
+        <section className="relative min-h-[60vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="relative z-10 max-w-4xl"
           >
-            <h1 className="heading-xl mb-10 text-slate-900">
+            <h1 className="heading-xl mb-5 md:mb-10 text-slate-900">
               {t("consulting.heading1")} <br />
               <span className="cool-gradient-text">{t("consulting.heading2")}</span>
             </h1>
@@ -67,9 +67,9 @@ export default function Consulting() {
         </section>
 
         {/* Services */}
-        <section className="py-16 md:py-32 px-6 bg-slate-50/50">
+        <section className="py-8 md:py-32 px-6 bg-slate-50/50">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-10 md:mb-16 text-center">
+            <div className="mb-6 md:mb-16 text-center">
               <p className="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
                 {t("consulting.services.desc")}
               </p>
@@ -90,9 +90,9 @@ export default function Consulting() {
         </section>
 
         {/* Process */}
-        <section className="py-16 md:py-32 px-6 bg-slate-50/50">
+        <section className="py-8 md:py-32 px-6 bg-slate-50/50">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-10 md:mb-20 text-center">
+            <div className="mb-6 md:mb-20 text-center">
               <p className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
                 {t("consulting.process.desc")}
               </p>
@@ -120,9 +120,9 @@ export default function Consulting() {
         </section>
 
         {/* Tech Stack */}
-        <section className="py-16 md:py-32 px-6">
+        <section className="py-8 md:py-32 px-6">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-10 md:mb-20 text-center">
+            <div className="mb-6 md:mb-20 text-center">
               <h2 className="heading-lg text-slate-900">{t("consulting.tech.badge")}</h2>
             </div>
             <div className="flex flex-col gap-4">

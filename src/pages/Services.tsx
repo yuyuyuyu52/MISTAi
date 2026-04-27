@@ -37,7 +37,7 @@ export default function Services() {
 
   return (
     <>
-      <section className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
+      <section className="relative min-h-[60vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
         <div className="fresh-bg" />
         <FloatingOrb color="#00d98b" size="35vw" top="-10%" left="-5%" delay={0} />
         <FloatingOrb color="#0070f3" size="30vw" top="50%" left="70%" delay={3} />
@@ -53,7 +53,7 @@ export default function Services() {
             <Sparkle className="w-3 h-3 text-mist-green" />
             {t("services.eyebrow")}
           </div>
-          <h1 className="heading-xl mb-10 text-slate-900">
+          <h1 className="heading-xl mb-5 md:mb-10 text-slate-900">
             {t("services.heading")}
           </h1>
           <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
@@ -62,7 +62,7 @@ export default function Services() {
         </motion.div>
       </section>
 
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {serviceRoutes.map((svc, i) => (
