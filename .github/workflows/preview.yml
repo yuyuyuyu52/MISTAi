@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
 
+concurrency:
+  group: preview-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   deploy-preview:
     if: github.event.action != 'closed'
@@ -17,6 +21,7 @@ jobs:
           cache: npm
 
       - run: npm ci
+      - run: npm run lint
       - run: npm run build
 
       - name: Deploy preview
@@ -93,7 +98,7 @@ jobs:
           SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          sudo apt-get install -y sshpass
+          sudo apt-get update && sudo apt-get install -y sshpass
 
           sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no "$SERVER_USER@$SERVER_HOST" bash -s << REMOTE
             rm -rf /var/www/mistai/previews/pr-$PR_NUMBER
