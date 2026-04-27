@@ -7,8 +7,8 @@ export default function Investment() {
   const { t } = useI18n();
 
   const portfolioItems = [
-    { name: "Spootialwolk", category: t("portfolio.spootialwolk.category"), desc: t("portfolio.spootialwolk.desc"), image: "https://picsum.photos/seed/fresh1/1200/800" },
-    { name: "瞰影科技", category: t("portfolio.kanying.category"), desc: t("portfolio.kanying.desc"), image: "https://picsum.photos/seed/fresh2/1200/800" },
+    { name: "SpatialWalk", category: t("portfolio.spatialwalk.category"), desc: t("portfolio.spatialwalk.desc"), video: "/spatialwalk.mp4", link: "https://spatialwalk.net/" },
+    { name: "瞰影科技", category: t("portfolio.kanying.category"), desc: t("portfolio.kanying.desc"), image: "/kanying.jpg", link: "https://www.ky3d.net/" },
   ];
 
   return (
@@ -50,19 +50,28 @@ export default function Investment() {
                 <div className="w-full lg:w-1/2 relative group">
                   <div className="absolute -inset-4 bg-gradient-to-r from-mist-green/10 to-mist-blue/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/5">
-                    <img src={item.image} alt={item.name} className="w-full aspect-[16/10] object-cover transition-transform duration-1000 group-hover:scale-105" referrerPolicy="no-referrer" />
+                    {item.video ? (
+                      <video src={item.video} autoPlay loop muted playsInline className="w-full aspect-[16/10] object-cover" />
+                    ) : (
+                      <img src={item.image} alt={item.name} className="w-full aspect-[16/10] object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    )}
                   </div>
                 </div>
                 <div className="w-full lg:w-1/2">
                   <span className="text-mist-blue font-bold tracking-widest text-[10px] mb-4 block uppercase">{item.category}</span>
                   <h3 className="font-display text-4xl font-bold mb-6 text-slate-900">{item.name}</h3>
                   <p className="text-lg text-slate-500 leading-relaxed mb-10 font-medium">{item.desc}</p>
-                  <button className="group flex items-center gap-4 text-slate-900 font-bold tracking-widest uppercase text-[10px] cursor-pointer">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-4 text-slate-900 font-bold tracking-widest uppercase text-[10px]"
+                  >
                     {t("portfolio.viewCase")}
                     <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-mist-blue group-hover:text-white transition-all">
                       <ArrowRight className="w-4 h-4" />
                     </div>
-                  </button>
+                  </a>
                 </div>
               </motion.div>
             ))}

@@ -253,15 +253,15 @@ const translations = {
   // Portfolio
   "portfolio.eyebrow": { zh: "精选案例", en: "Selected Works" },
   "portfolio.heading": { zh: "孵化案例", en: "INCUBATION CASE" },
-  "portfolio.spootialwolk.category": { zh: "空间智能", en: "Spatial Intelligence" },
-  "portfolio.spootialwolk.desc": {
-    zh: "空间智能与 AI 交互领航者，重新定义人机协作边界。",
-    en: "Pioneer in spatial intelligence and AI interaction, redefining the boundaries of human-machine collaboration.",
+  "portfolio.spatialwalk.category": { zh: "实时交互数字人", en: "Real-Time Interactive Digital Humans" },
+  "portfolio.spatialwalk.desc": {
+    zh: "基于 3DGS + 自研轻量化多模态模型 + 端侧实时推理，通过 1 分钟视频生成超写实可驱动 3D 数字形象，实现毫秒级音素同步与参数化驱动，仅需 10-20KB/s 传输，算力成本降低 1-2 个数量级。",
+    en: "Built on 3DGS + proprietary lightweight multimodal models + on-device real-time inference. Generate hyper-realistic drivable 3D digital avatars from 1-minute video, achieving millisecond-level phoneme sync with just 10-20KB/s transmission — reducing compute costs by 1-2 orders of magnitude.",
   },
-  "portfolio.kanying.category": { zh: "工业 AI", en: "Industrial AI" },
+  "portfolio.kanying.category": { zh: "3D 空间快勘与公共安全", en: "3D Spatial Scanning & Public Safety" },
   "portfolio.kanying.desc": {
-    zh: "工业视觉与 AI 检测专家，为传统制造注入智能基因。",
-    en: "Expert in industrial vision and AI inspection, injecting intelligent DNA into traditional manufacturing.",
+    zh: "国内公共安全领域交通事故 3D 空间记忆快勘与应用的领航者。AI 事故勘查仪 3-5 分钟完成现场三维扫描，精度 ±1.2cm，全天候作业，自动生成标准勘查报告与司法认证数据。",
+    en: "Pioneer in 3D spatial fast-scanning for traffic accidents in public safety. AI accident scanner completes on-site 3D scanning in 3-5 minutes with ±1.2cm precision, all-weather operation, auto-generating standard investigation reports and forensic-grade data.",
   },
   "portfolio.viewCase": { zh: "查看案例详情", en: "VIEW CASE STUDY" },
 
