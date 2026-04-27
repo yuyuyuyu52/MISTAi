@@ -2,35 +2,24 @@ import { motion, useScroll, useTransform } from "motion/react";
 import {
   ArrowRight, RocketLaunch, TrendUp, Cpu, Target, Eye, Heart, MapPin,
 } from "@phosphor-icons/react";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useI18n } from "../i18n";
 import { FloatingOrb } from "../components";
 
-const useIsMobile = () => {
-  const [m, setM] = useState(false);
-  useEffect(() => {
-    const c = () => setM(window.innerWidth < 768);
-    c();
-    window.addEventListener("resize", c);
-    return () => window.removeEventListener("resize", c);
-  }, []);
-  return m;
-};
-
 const sectionVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const itemUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 80, damping: 20 } },
 };
 
 const itemFade = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.6 } },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 const Hero = () => {
@@ -51,9 +40,9 @@ const Hero = () => {
 
       <motion.div style={{ y, opacity, scale }} className="relative z-10 max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="heading-xl mb-5 md:mb-10 text-slate-900">
             {t("hero.heading1")} <br />
@@ -63,10 +52,10 @@ const Hero = () => {
             {t("hero.desc")}
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <button onClick={() => navigate("/services")} className="btn-cool px-10 py-4.5 bg-slate-900 text-white font-bold rounded-2xl hover:bg-mist-blue transition-all flex items-center gap-3 shadow-xl shadow-slate-900/20 cursor-pointer">
+            <button onClick={() => navigate("/services/investment")} className="btn-cool px-10 py-4.5 bg-slate-900 text-white font-bold rounded-2xl hover:bg-mist-blue transition-all flex items-center gap-3 shadow-xl shadow-slate-900/20 cursor-pointer">
               {t("hero.startProject")} <ArrowRight className="w-5 h-5" />
             </button>
-            <button onClick={() => navigate("/about")} className="px-10 py-4.5 bg-white text-slate-900 font-bold rounded-2xl border border-black/5 hover:bg-slate-50 transition-all shadow-sm cursor-pointer">
+            <button onClick={() => navigate("/events")} className="px-10 py-4.5 bg-white text-slate-900 font-bold rounded-2xl border border-black/5 hover:bg-slate-50 transition-all shadow-sm cursor-pointer">
               {t("hero.ourPortfolio")}
             </button>
           </div>
@@ -108,7 +97,7 @@ const AboutPreview = () => {
             </p>
             <div>
               <button
-                onClick={() => navigate("/about")}
+                onClick={() => navigate("/events")}
                 className="group flex items-center gap-3 text-slate-900 font-bold tracking-widest uppercase text-[10px] cursor-pointer"
               >
                 {t("home.about.cta")}
@@ -143,7 +132,6 @@ const AboutPreview = () => {
 const ServicesPreview = () => {
   const { t } = useI18n();
   const navigate = useNavigate();
-  const isMobile = useIsMobile();
 
   const services = [
     {
@@ -190,22 +178,9 @@ const ServicesPreview = () => {
               onClick={() => navigate(svc.link)}
               className="glass-card group relative p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] hover:scale-[1.02] transition-all duration-500 cursor-pointer overflow-hidden"
             >
-              {!isMobile && (
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.05, 0.12, 0.05] }}
-                  transition={{ duration: 12, repeat: Infinity }}
-                  className={`absolute -top-20 -right-20 w-64 h-64 bg-${svc.color} rounded-full blur-[80px] pointer-events-none`}
-                />
-              )}
               <div className="relative z-10">
                 <div className="relative w-12 h-12 md:w-16 md:h-16 mb-6 md:mb-8 flex items-center justify-center">
-                  {!isMobile && (
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      className={`absolute inset-0 border-2 border-dashed border-${svc.color}/20 rounded-full`}
-                    />
-                  )}
+                  <div className={`hidden md:block absolute inset-0 border-2 border-dashed border-${svc.color}/20 rounded-full spin-slow`} />
                   <div className="relative w-12 h-12 rounded-2xl bg-white shadow-xl shadow-black/5 flex items-center justify-center border border-black/5">
                     <div className={`text-${svc.color}`}>{svc.icon}</div>
                   </div>

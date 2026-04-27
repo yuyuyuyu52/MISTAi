@@ -19,9 +19,9 @@ export default function ServiceDetail({
     <>
       <section className="relative min-h-[60vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 max-w-4xl"
         >
           <h1 className="heading-xl mb-5 md:mb-10 text-slate-900">

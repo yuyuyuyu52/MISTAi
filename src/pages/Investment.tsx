@@ -46,9 +46,9 @@ export default function Investment() {
             {portfolioItems.map((item, index) => (
               <motion.div
                 key={item.name}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ type: "spring", stiffness: 70, damping: 20 }}
                 viewport={{ once: true }}
                 className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-6 md:gap-16 py-6 md:py-20 border-b border-black/5 last:border-0`}
               >

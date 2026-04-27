@@ -32,9 +32,9 @@ export default function Events() {
       <div className="relative z-10">
       <section className="relative min-h-[60vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 max-w-4xl"
         >
           <h1 className="heading-xl mb-5 md:mb-10 text-slate-900">
@@ -53,9 +53,9 @@ export default function Events() {
             {events.map((event, i) => (
               <motion.div
                 key={event.titleKey}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.04 }}
+                transition={{ type: "spring", stiffness: 80, damping: 20, delay: i * 0.03 }}
                 viewport={{ once: true }}
                 className="flex flex-col md:flex-row gap-0 rounded-2xl bg-white border border-slate-100 hover:shadow-xl hover:shadow-black/5 transition-all overflow-hidden group"
               >

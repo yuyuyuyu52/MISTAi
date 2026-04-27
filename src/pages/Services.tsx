@@ -44,9 +44,9 @@ export default function Services() {
         <FloatingOrb color="#7928ca" size="25vw" top="60%" left="10%" delay={6} />
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 max-w-4xl"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-md border border-black/5 text-slate-600 text-[10px] font-bold tracking-[0.2em] mb-10 uppercase shadow-sm">
@@ -68,27 +68,18 @@ export default function Services() {
             {serviceRoutes.map((svc, i) => (
               <motion.div
                 key={svc.path}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
+                transition={{ type: "spring", stiffness: 70, damping: 20, delay: i * 0.1 }}
                 viewport={{ once: true }}
                 onClick={() => navigate(svc.path)}
                 className="glass-card group relative p-12 rounded-[2.5rem] hover:scale-[1.02] transition-all duration-500 cursor-pointer overflow-hidden"
               >
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.05, 0.12, 0.05] }}
-                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                  className={`absolute -top-20 -right-20 w-64 h-64 bg-${svc.color} rounded-full blur-[80px] pointer-events-none`}
-                />
                 <div className="relative z-10">
                   <div className="relative w-16 h-16 rounded-2xl bg-white shadow-xl shadow-black/5 flex items-center justify-center border border-black/5 mb-10">
-                    <motion.div
-                      animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                      className={`text-${svc.color}`}
-                    >
+                    <div className={`text-${svc.color}`}>
                       {svc.icon}
-                    </motion.div>
+                    </div>
                   </div>
 
                   <span className={`text-${svc.color} font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block`}>

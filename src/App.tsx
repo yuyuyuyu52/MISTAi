@@ -3,18 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { MotionConfig } from "motion/react";
 import { I18nProvider, useI18n } from "./i18n";
 
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Investment from "./pages/Investment";
-import AgentGlobal from "./pages/AgentGlobal";
-import Consulting from "./pages/Consulting";
-import Events from "./pages/Events";
+const Investment = lazy(() => import("./pages/Investment"));
+const AgentGlobal = lazy(() => import("./pages/AgentGlobal"));
+const Consulting = lazy(() => import("./pages/Consulting"));
+const Events = lazy(() => import("./pages/Events"));
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -73,7 +71,7 @@ const Nav = () => {
         >
           {lang === "zh" ? "EN" : "中文"}
         </button>
-        <Link to="/services" className="hidden sm:inline-flex px-6 py-2 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-mist-blue transition-all shadow-lg shadow-slate-900/10">
+        <Link to="/services/investment" className="hidden sm:inline-flex px-6 py-2 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-mist-blue transition-all shadow-lg shadow-slate-900/10">
           {t("nav.getStarted")}
         </Link>
         <button
@@ -103,7 +101,7 @@ const Nav = () => {
             </Link>
           ))}
           <Link
-            to="/services"
+            to="/services/investment"
             onClick={() => setMobileOpen(false)}
             className="mt-4 px-8 py-3 rounded-full bg-slate-900 text-white text-sm font-bold shadow-lg"
           >
@@ -172,18 +170,17 @@ export default function App() {
       <I18nProvider>
         <MotionConfig reducedMotion={isMobile ? "always" : "user"}>
         <div className="relative bg-white text-slate-900 selection:bg-mist-blue selection:text-white">
-          <div className="noise-overlay" />
           <Nav />
           <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/investment" element={<Investment />} />
-              <Route path="/services/agent-global" element={<AgentGlobal />} />
-              <Route path="/services/consulting" element={<Consulting />} />
-              <Route path="/events" element={<Events />} />
-            </Routes>
+            <Suspense fallback={<div className="min-h-screen" />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/services/investment" element={<Investment />} />
+                <Route path="/services/agent-global" element={<AgentGlobal />} />
+                <Route path="/services/consulting" element={<Consulting />} />
+                <Route path="/events" element={<Events />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
         </div>

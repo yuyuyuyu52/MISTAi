@@ -51,9 +51,9 @@ export default function Consulting() {
         {/* Hero */}
         <section className="relative min-h-[60vh] md:min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-10 max-w-4xl"
           >
             <h1 className="heading-xl mb-5 md:mb-10 text-slate-900">
@@ -101,9 +101,9 @@ export default function Consulting() {
               {steps.map((step, i) => (
                 <motion.div
                   key={step.title}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  transition={{ type: "spring", stiffness: 80, damping: 20, delay: i * 0.06 }}
                   viewport={{ once: true }}
                   className="relative p-8 rounded-[2rem] bg-white border border-slate-100 hover:shadow-xl hover:shadow-black/5 transition-all group"
                 >
@@ -129,9 +129,9 @@ export default function Consulting() {
               {techLayers.map((layer, i) => (
                 <motion.div
                   key={layer.label}
-                  initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  transition={{ type: "spring", stiffness: 80, damping: 20, delay: i * 0.06 }}
                   viewport={{ once: true }}
                   className="glass-card p-8 rounded-2xl"
                 >

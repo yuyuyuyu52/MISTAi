@@ -78,7 +78,7 @@ function EarthModel() {
   return (
     <group ref={groupRef} rotation={[0.35, -1.0, 0]}>
       <mesh>
-        <sphereGeometry args={[1.5, 64, 64]} />
+        <sphereGeometry args={[1.5, 48, 48]} />
         <meshPhongMaterial
           map={dayMap}
           normalMap={normalMap}
@@ -109,16 +109,8 @@ const GlobeSection = () => {
   return (
     <section className="relative py-8 md:py-32 px-6 overflow-hidden rounded-[2rem] md:rounded-[4rem] mx-4 md:mx-6 mb-6 md:mb-12 bg-white border border-slate-100">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-        <motion.div
-          animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-mist-green/5 rounded-full blur-[100px]"
-        />
-        <motion.div
-          animate={{ x: [0, -40, 0], y: [0, 50, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-mist-blue/5 rounded-full blur-[100px]"
-        />
+        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-mist-green/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-mist-blue/5 rounded-full blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -138,6 +130,7 @@ const GlobeSection = () => {
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
                   className="p-6 rounded-3xl bg-slate-50/50 border border-slate-100 hover:bg-white hover:shadow-xl hover:shadow-black/5 transition-all group"
                 >
                   <h4 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-mist-green transition-colors">{hub.city}</h4>
@@ -156,7 +149,7 @@ const GlobeSection = () => {
               className="relative w-[120%] max-w-[800px] aspect-square -mr-[10%]"
               style={{ touchAction: "none" }}
             >
-              <Canvas camera={{ position: [0, 0, 4.2], fov: 45 }} dpr={[1, 2]} gl={{ alpha: true }}>
+              <Canvas camera={{ position: [0, 0, 4.2], fov: 45 }} dpr={[1, 1.5]} gl={{ alpha: true }}>
                 <ambientLight intensity={2} />
                 <directionalLight position={[5, 3, 5]} intensity={3} />
                 <directionalLight position={[-4, 2, -3]} intensity={1.2} color="#aaccff" />
@@ -252,26 +245,13 @@ export default function About() {
                 onClick={() => navigate(engine.link)}
                 className="glass-card group relative p-10 rounded-[2.5rem] hover:scale-[1.02] transition-all duration-500 cursor-pointer overflow-hidden"
               >
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.05, 0.12, 0.05] }}
-                  transition={{ duration: 12, repeat: Infinity }}
-                  className={`absolute -top-20 -right-20 w-64 h-64 bg-${engine.color} rounded-full blur-[80px] pointer-events-none`}
-                />
-                <div className="relative z-10">
+                  <div className="relative z-10">
                   <div className="relative w-16 h-16 mb-8 flex items-center justify-center">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      className={`absolute inset-0 border-2 border-dashed border-${engine.color}/20 rounded-full`}
-                    />
+                    <div className={`absolute inset-0 border-2 border-dashed border-${engine.color}/20 rounded-full spin-slow`} />
                     <div className="relative w-12 h-12 rounded-2xl bg-white shadow-xl shadow-black/5 flex items-center justify-center border border-black/5">
-                      <motion.div
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className={`text-${engine.color}`}
-                      >
+                      <div className={`text-${engine.color}`}>
                         {engine.icon}
-                      </motion.div>
+                      </div>
                     </div>
                   </div>
                   <h3 className="font-display text-2xl font-bold mb-4 text-slate-900">{engine.title}</h3>
@@ -305,14 +285,12 @@ export default function About() {
                 { icon: <Globe className="w-5 h-5" />, color: "mist-blue" },
                 { icon: <Sparkle className="w-5 h-5" />, color: "mist-accent" },
               ].map((item, i) => (
-                <motion.div
+                <div
                   key={i}
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
                   className={`w-14 h-14 rounded-2xl bg-white shadow-xl shadow-black/5 flex items-center justify-center border border-black/5 text-${item.color}`}
                 >
                   {item.icon}
-                </motion.div>
+                </div>
               ))}
             </div>
 
