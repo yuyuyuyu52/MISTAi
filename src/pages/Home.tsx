@@ -2,10 +2,21 @@ import { motion, useScroll, useTransform } from "motion/react";
 import {
   ArrowRight, RocketLaunch, TrendUp, Cpu, Target, Eye, Heart, MapPin,
 } from "@phosphor-icons/react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useI18n } from "../i18n";
 import { FloatingOrb } from "../components";
+
+const useIsMobile = () => {
+  const [m, setM] = useState(false);
+  useEffect(() => {
+    const c = () => setM(window.innerWidth < 768);
+    c();
+    window.addEventListener("resize", c);
+    return () => window.removeEventListener("resize", c);
+  }, []);
+  return m;
+};
 
 const sectionVariants = {
   hidden: {},
@@ -132,6 +143,7 @@ const AboutPreview = () => {
 const ServicesPreview = () => {
   const { t } = useI18n();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   const services = [
     {
@@ -176,32 +188,30 @@ const ServicesPreview = () => {
               key={svc.title}
               variants={itemUp}
               onClick={() => navigate(svc.link)}
-              className="glass-card group relative p-10 rounded-[2.5rem] hover:scale-[1.02] transition-all duration-500 cursor-pointer overflow-hidden"
+              className="glass-card group relative p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] hover:scale-[1.02] transition-all duration-500 cursor-pointer overflow-hidden"
             >
-              <motion.div
-                animate={{ scale: [1, 1.3, 1], opacity: [0.05, 0.12, 0.05] }}
-                transition={{ duration: 12, repeat: Infinity }}
-                className={`absolute -top-20 -right-20 w-64 h-64 bg-${svc.color} rounded-full blur-[80px] pointer-events-none`}
-              />
+              {!isMobile && (
+                <motion.div
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.05, 0.12, 0.05] }}
+                  transition={{ duration: 12, repeat: Infinity }}
+                  className={`absolute -top-20 -right-20 w-64 h-64 bg-${svc.color} rounded-full blur-[80px] pointer-events-none`}
+                />
+              )}
               <div className="relative z-10">
-                <div className="relative w-16 h-16 mb-8 flex items-center justify-center">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    className={`absolute inset-0 border-2 border-dashed border-${svc.color}/20 rounded-full`}
-                  />
-                  <div className="relative w-12 h-12 rounded-2xl bg-white shadow-xl shadow-black/5 flex items-center justify-center border border-black/5">
+                <div className="relative w-12 h-12 md:w-16 md:h-16 mb-6 md:mb-8 flex items-center justify-center">
+                  {!isMobile && (
                     <motion.div
-                      animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                      className={`text-${svc.color}`}
-                    >
-                      {svc.icon}
-                    </motion.div>
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      className={`absolute inset-0 border-2 border-dashed border-${svc.color}/20 rounded-full`}
+                    />
+                  )}
+                  <div className="relative w-12 h-12 rounded-2xl bg-white shadow-xl shadow-black/5 flex items-center justify-center border border-black/5">
+                    <div className={`text-${svc.color}`}>{svc.icon}</div>
                   </div>
                 </div>
-                <h3 className="font-display text-2xl font-bold mb-4 text-slate-900">{svc.title}</h3>
-                <p className="text-slate-500 leading-relaxed text-base font-medium mb-8">{svc.desc}</p>
+                <h3 className="font-display text-xl md:text-2xl font-bold mb-3 md:mb-4 text-slate-900">{svc.title}</h3>
+                <p className="text-slate-500 leading-relaxed text-sm md:text-base font-medium mb-6 md:mb-8">{svc.desc}</p>
                 <div className="flex items-center gap-3 text-slate-900 font-bold tracking-widest uppercase text-[10px] group-hover:gap-5 transition-all">
                   {t("home.viewDetails")}
                   <div className={`w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-${svc.color} group-hover:text-white transition-all`}>
@@ -300,10 +310,10 @@ const OfficesPreview = () => {
   const { t } = useI18n();
 
   const offices = [
-    { city: t("global.hangzhou"), label: t("global.hangzhou.label"), color: "mist-green", flag: "🇨🇳", img: "/hangzhou.jpg" },
-    { city: t("global.paris"), label: t("global.paris.label"), color: "mist-blue", flag: "🇫🇷", img: "/paris.jpg" },
-    { city: t("global.singapore"), label: t("global.singapore.label"), color: "mist-accent", flag: "🇸🇬", img: "/singapore.jpg" },
-    { city: t("global.sv"), label: t("global.sv.label"), color: "mist-green", flag: "🇺🇸", img: "/silicon-valley.jpg" },
+    { city: t("global.hangzhou"), label: t("global.hangzhou.label"), color: "mist-green", img: "/hangzhou.jpg" },
+    { city: t("global.paris"), label: t("global.paris.label"), color: "mist-blue", img: "/paris.jpg" },
+    { city: t("global.singapore"), label: t("global.singapore.label"), color: "mist-accent", img: "/singapore.jpg" },
+    { city: t("global.sv"), label: t("global.sv.label"), color: "mist-green", img: "/silicon-valley.jpg" },
   ];
 
   return (
@@ -330,7 +340,6 @@ const OfficesPreview = () => {
                 <img src={office.img} alt={office.city} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-5 text-center">
-                <div className="text-xl mb-2">{office.flag}</div>
                 <h4 className={`font-display text-lg font-bold text-slate-900 mb-1 group-hover:text-${office.color} transition-colors`}>{office.city}</h4>
                 <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">{office.label}</p>
               </div>

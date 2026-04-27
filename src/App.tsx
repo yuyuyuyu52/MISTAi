@@ -17,6 +17,7 @@ import Events from "./pages/Events";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { lang, setLang, t } = useI18n();
   const location = useLocation();
 
@@ -28,6 +29,7 @@ const Nav = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setMobileOpen(false);
   }, [location.pathname]);
 
   const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + "/");
@@ -41,7 +43,8 @@ const Nav = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-6 py-4 flex justify-between items-center ${scrolled ? "bg-white/70 backdrop-blur-xl border-b border-black/5" : "bg-transparent"}`}>
+    <>
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-6 py-4 flex justify-between items-center ${scrolled || mobileOpen ? "bg-white/70 backdrop-blur-xl border-b border-black/5" : "bg-transparent"}`}>
       <Link to="/" className="flex items-center gap-2">
         <img src="/mist_logo.png" alt="MIST Ai" className="h-10 w-10 object-contain" />
         <span className="font-display text-2xl font-bold tracking-tighter cool-gradient-text">MIST Ai</span>
@@ -69,28 +72,63 @@ const Nav = () => {
         >
           {lang === "zh" ? "EN" : "中文"}
         </button>
-        <Link to="/services" className="px-6 py-2 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-mist-blue transition-all shadow-lg shadow-slate-900/10">
+        <Link to="/services" className="hidden sm:inline-flex px-6 py-2 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-mist-blue transition-all shadow-lg shadow-slate-900/10">
           {t("nav.getStarted")}
         </Link>
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5 cursor-pointer"
+        >
+          <span className={`block w-5 h-0.5 bg-slate-900 transition-all ${mobileOpen ? "rotate-45 translate-y-1" : ""}`} />
+          <span className={`block w-5 h-0.5 bg-slate-900 transition-all ${mobileOpen ? "-rotate-45 -translate-y-1" : ""}`} />
+        </button>
       </div>
     </nav>
+
+    {mobileOpen && (
+      <div className="fixed inset-0 top-[72px] z-[99] bg-white/95 backdrop-blur-xl md:hidden">
+        <div className="flex flex-col items-center gap-6 pt-12">
+          {navItems.map(item => (
+            <Link
+              key={item.to}
+              to={item.to}
+              onClick={() => setMobileOpen(false)}
+              className={`text-lg font-bold tracking-wide ${
+                (item.to === "/" ? location.pathname === "/" : isActive(item.to))
+                  ? "text-mist-blue" : "text-slate-700"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link
+            to="/services"
+            onClick={() => setMobileOpen(false)}
+            className="mt-4 px-8 py-3 rounded-full bg-slate-900 text-white text-sm font-bold shadow-lg"
+          >
+            {t("nav.getStarted")}
+          </Link>
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 
 const Footer = () => {
   const { t } = useI18n();
   return (
-    <footer className="relative px-6 py-24 bg-white">
+    <footer className="relative px-6 py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 mb-16 md:mb-24">
           <div>
-            <h2 className="heading-lg text-slate-900 mb-10">{t("footer.heading1")} <br /> <span className="cool-gradient-text">{t("footer.heading2")}</span></h2>
-            <p className="text-lg text-slate-400 max-w-md font-medium leading-relaxed">
+            <h2 className="heading-lg text-slate-900 mb-6 md:mb-10">{t("footer.heading1")} <br /> <span className="cool-gradient-text">{t("footer.heading2")}</span></h2>
+            <p className="text-base md:text-lg text-slate-400 max-w-md font-medium leading-relaxed">
               {t("footer.desc")}
             </p>
           </div>
-          <div className="flex flex-col justify-between items-end">
-            <div className="text-right">
+          <div className="flex flex-col justify-between items-start lg:items-end">
+            <div className="lg:text-right">
               <span className="text-[10px] font-bold tracking-[0.2em] text-slate-600 uppercase mb-6 block">{t("footer.contactUs")}</span>
               <span className="font-display text-xl font-bold cool-gradient-text">
                 WeChat: MISTAi001
@@ -98,11 +136,11 @@ const Footer = () => {
             </div>
             <div className="mt-10 flex gap-6">
               <div className="flex flex-col items-center gap-2">
-                <img src="/redbook.png" alt="小红书" className="w-28 h-28 rounded-xl shadow-md" />
+                <img src="/redbook.png" alt="小红书" className="w-24 h-24 md:w-28 md:h-28 rounded-xl shadow-md" />
                 <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">小红书</span>
               </div>
               <div className="flex flex-col items-center gap-2">
-                <img src="/wechat.jpg" alt="微信公众号" className="w-28 h-28 rounded-xl shadow-md" />
+                <img src="/wechat.jpg" alt="微信公众号" className="w-24 h-24 md:w-28 md:h-28 rounded-xl shadow-md" />
                 <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">微信公众号</span>
               </div>
             </div>

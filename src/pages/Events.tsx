@@ -22,13 +22,15 @@ export default function Events() {
   ];
 
   return (
-    <>
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
-        <div className="fresh-bg" />
-        <FloatingOrb color="#0070f3" size="35vw" top="-10%" left="60%" delay={0} />
-        <FloatingOrb color="#7928ca" size="30vw" top="50%" left="-5%" delay={3} />
-        <FloatingOrb color="#00d98b" size="25vw" top="60%" left="30%" delay={6} />
-
+    <div className="relative overflow-hidden">
+      <div className="fresh-bg" />
+      <FloatingOrb color="#0070f3" size="35vw" top="0%" left="-5%" delay={0} />
+      <FloatingOrb color="#7928ca" size="28vw" top="8%" left="65%" delay={3} />
+      <FloatingOrb color="#00d98b" size="22vw" top="30%" left="10%" delay={6} />
+      <FloatingOrb color="#0070f3" size="18vw" top="50%" left="80%" delay={1} />
+      <FloatingOrb color="#7928ca" size="16vw" top="70%" left="5%" delay={4} />
+      <div className="relative z-10">
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -60,10 +62,10 @@ export default function Events() {
                 <div className="md:w-80 shrink-0 overflow-hidden">
                   <img src={event.img} alt={t(event.titleKey)} className="w-full h-full object-cover aspect-[4/3] md:aspect-auto group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <div className="flex items-center justify-between p-7 flex-1 gap-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between p-5 md:p-7 flex-1 gap-4 md:gap-6">
                   <div>
-                    <h4 className="font-display text-xl font-bold text-slate-900 mb-2">{t(event.titleKey)}</h4>
-                    <p className="text-sm text-slate-500 font-medium mb-3">{t(event.topicKey)}</p>
+                    <h4 className="font-display text-lg md:text-xl font-bold text-slate-900 mb-2">{t(event.titleKey)}</h4>
+                    <p className="text-xs md:text-sm text-slate-500 font-medium mb-3 line-clamp-3 md:line-clamp-none">{t(event.topicKey)}</p>
                     <div className="flex items-center gap-1.5 text-slate-400 text-xs font-medium">
                       <MapPin className="w-3 h-3" />
                       {t(event.dateKey)}
@@ -84,6 +86,7 @@ export default function Events() {
           </div>
         </div>
       </section>
-    </>
+      </div>
+    </div>
   );
 }

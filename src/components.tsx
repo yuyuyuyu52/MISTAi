@@ -1,10 +1,31 @@
 import { motion } from "motion/react";
-import { Plus } from "@phosphor-icons/react";
+import { useState, useEffect } from "react";
+
+const useIsMobile = () => {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return mobile;
+};
 
 export const FloatingOrb = ({ color, size, top, left, delay }: any) => {
+  const isMobile = useIsMobile();
   const d = delay || 0;
   const dur1 = 18 + d * 2;
   const dur2 = 22 + d * 3;
+
+  if (isMobile) {
+    return (
+      <div
+        className="floating-orb"
+        style={{ backgroundColor: color, width: size, height: size, top, left }}
+      />
+    );
+  }
 
   return (
     <motion.div
@@ -30,51 +51,48 @@ export const FloatingOrb = ({ color, size, top, left, delay }: any) => {
   );
 };
 
-export const ServiceCard = ({ title, desc, icon, index, exploreLabel, onClick }: any) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: index * 0.1 }}
-    viewport={{ once: true }}
-    onClick={onClick}
-    className={`glass-card group relative p-10 rounded-[2.5rem] hover:scale-[1.02] transition-all duration-500 overflow-hidden ${onClick ? "cursor-pointer" : ""}`}
-  >
+export const ServiceCard = ({ title, desc, icon, index, onClick }: any) => {
+  const isMobile = useIsMobile();
+
+  return (
     <motion.div
-      animate={{
-        scale: [1, 1.2, 1],
-        opacity: [0.05, 0.1, 0.05],
-        rotate: [0, 90, 180, 270, 360],
-      }}
-      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-      className="absolute -top-20 -right-20 w-64 h-64 bg-mist-blue rounded-full blur-[80px] pointer-events-none"
-    />
-    <div className="relative z-10">
-      <div className="relative w-20 h-20 mb-10 flex items-center justify-center">
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: isMobile ? 0 : index * 0.1 }}
+      viewport={{ once: true }}
+      onClick={onClick}
+      className={`glass-card group relative p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] hover:scale-[1.02] transition-all duration-500 overflow-hidden ${onClick ? "cursor-pointer" : ""}`}
+    >
+      {!isMobile && (
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 border-2 border-dashed border-mist-blue/20 rounded-full"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05], rotate: [0, 90, 180, 270, 360] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-20 -right-20 w-64 h-64 bg-mist-blue rounded-full blur-[80px] pointer-events-none"
         />
-        <motion.div
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-2 bg-mist-blue/5 rounded-full blur-md"
-        />
-        <div className="relative w-14 h-14 rounded-2xl bg-white shadow-xl shadow-black/5 flex items-center justify-center border border-black/5">
-          <motion.div
-            animate={{ y: [0, -4, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="text-mist-blue"
-          >
-            {icon}
-          </motion.div>
+      )}
+      <div className="relative z-10">
+        <div className="relative w-14 h-14 md:w-20 md:h-20 mb-6 md:mb-10 flex items-center justify-center">
+          {!isMobile && (
+            <>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 border-2 border-dashed border-mist-blue/20 rounded-full"
+              />
+              <motion.div
+                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-2 bg-mist-blue/5 rounded-full blur-md"
+              />
+            </>
+          )}
+          <div className="relative w-14 h-14 rounded-2xl bg-white shadow-xl shadow-black/5 flex items-center justify-center border border-black/5">
+            <div className="text-mist-blue">{icon}</div>
+          </div>
         </div>
+        <h3 className="font-display text-xl md:text-2xl font-bold mb-3 md:mb-4 text-slate-900">{title}</h3>
+        <p className="text-slate-500 leading-relaxed text-sm md:text-base font-medium">{desc}</p>
       </div>
-      <h3 className="font-display text-2xl font-bold mb-4 text-slate-900">{title}</h3>
-      <p className="text-slate-500 leading-relaxed mb-8 text-base font-medium">{desc}</p>
-      <div className="flex items-center gap-2 text-mist-blue font-bold text-xs tracking-widest uppercase group-hover:gap-4 transition-all">
-        {exploreLabel} <Plus className="w-4 h-4" />
-      </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};

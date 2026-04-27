@@ -13,13 +13,15 @@ export default function Knowledge() {
   ];
 
   return (
-    <>
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
-        <div className="fresh-bg" />
-        <FloatingOrb color="#7928ca" size="35vw" top="-10%" left="60%" delay={0} />
-        <FloatingOrb color="#00d98b" size="30vw" top="50%" left="-5%" delay={3} />
-        <FloatingOrb color="#0070f3" size="25vw" top="60%" left="30%" delay={6} />
-
+    <div className="relative overflow-hidden">
+      <div className="fresh-bg" />
+      <FloatingOrb color="#7928ca" size="35vw" top="0%" left="-5%" delay={0} />
+      <FloatingOrb color="#00d98b" size="28vw" top="8%" left="65%" delay={3} />
+      <FloatingOrb color="#0070f3" size="22vw" top="30%" left="10%" delay={6} />
+      <FloatingOrb color="#7928ca" size="18vw" top="50%" left="80%" delay={1} />
+      <FloatingOrb color="#00d98b" size="16vw" top="70%" left="5%" delay={4} />
+      <div className="relative z-10">
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,6 +77,7 @@ export default function Knowledge() {
           </motion.div>
         </div>
       </section>
-    </>
+      </div>
+    </div>
   );
 }

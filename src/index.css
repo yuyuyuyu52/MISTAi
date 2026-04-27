@@ -68,6 +68,13 @@
   mix-blend-mode: multiply;
 }
 
+@media (max-width: 767px) {
+  .floating-orb {
+    opacity: 0.2;
+    filter: blur(60px);
+  }
+}
+
 /* Typography */
 .heading-xl {
   font-family: var(--font-display);

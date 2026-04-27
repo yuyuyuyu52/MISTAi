@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
-import { FloatingOrb, ServiceCard } from "../components";
+import { ServiceCard } from "../components";
 
 interface ServiceDetailProps {
   badge: string;
@@ -10,22 +10,14 @@ interface ServiceDetailProps {
   badgeIcon: ReactNode;
   cards: { title: string; desc: string; icon: ReactNode }[];
   exploreLabel: string;
-  orbColor1?: string;
-  orbColor2?: string;
 }
 
 export default function ServiceDetail({
   badge, heading1, heading2, desc, badgeIcon, cards, exploreLabel,
-  orbColor1 = "#00d98b", orbColor2 = "#0070f3",
 }: ServiceDetailProps) {
   return (
     <>
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
-        <div className="fresh-bg" />
-        <FloatingOrb color={orbColor1} size="35vw" top="-10%" left="60%" delay={0} />
-        <FloatingOrb color={orbColor2} size="30vw" top="50%" left="-5%" delay={3} />
-        <FloatingOrb color="#7928ca" size="25vw" top="60%" left="30%" delay={6} />
-
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

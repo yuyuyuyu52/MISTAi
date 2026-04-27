@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { RocketLaunch, Cpu, Users, Lightning, ArrowRight } from "@phosphor-icons/react";
 import { useI18n } from "../i18n";
+import { FloatingOrb } from "../components";
 import ServiceDetail from "./ServiceDetail";
 
 export default function Investment() {
@@ -12,7 +13,14 @@ export default function Investment() {
   ];
 
   return (
-    <>
+    <div className="relative overflow-hidden">
+      <div className="fresh-bg" />
+      <FloatingOrb color="#00d98b" size="35vw" top="0%" left="-5%" delay={0} />
+      <FloatingOrb color="#7928ca" size="28vw" top="8%" left="65%" delay={3} />
+      <FloatingOrb color="#0070f3" size="22vw" top="30%" left="10%" delay={6} />
+      <FloatingOrb color="#00d98b" size="18vw" top="50%" left="80%" delay={1} />
+      <FloatingOrb color="#7928ca" size="16vw" top="70%" left="5%" delay={4} />
+      <div className="relative z-10">
       <ServiceDetail
         badge={t("investment.badge")}
         heading1={t("investment.heading1")}
@@ -20,8 +28,6 @@ export default function Investment() {
         desc={t("investment.desc")}
         badgeIcon={<RocketLaunch className="w-3 h-3 text-mist-green" />}
         exploreLabel={t("services.explore")}
-        orbColor1="#00d98b"
-        orbColor2="#7928ca"
         cards={[
           { title: t("investment.card1.title"), desc: t("investment.card1.desc"), icon: <RocketLaunch className="w-7 h-7" /> },
           { title: t("investment.card2.title"), desc: t("investment.card2.desc"), icon: <Cpu className="w-7 h-7" /> },
@@ -34,7 +40,6 @@ export default function Investment() {
       <section className="relative py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20">
-            <span className="text-mist-accent font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">{t("portfolio.eyebrow")}</span>
             <h2 className="heading-lg text-slate-900">{t("portfolio.heading")}</h2>
           </div>
           <div className="flex flex-col">
@@ -51,7 +56,7 @@ export default function Investment() {
                   <div className="absolute -inset-4 bg-gradient-to-r from-mist-green/10 to-mist-blue/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/5">
                     {item.video ? (
-                      <video src={item.video} autoPlay loop muted playsInline className="w-full aspect-[16/10] object-cover" />
+                      <video src={item.video} autoPlay loop muted playsInline className="w-full aspect-[16/10] object-cover scale-[1.02]" />
                     ) : (
                       <img src={item.image} alt={item.name} className="w-full aspect-[16/10] object-cover transition-transform duration-1000 group-hover:scale-105" />
                     )}
@@ -78,6 +83,7 @@ export default function Investment() {
           </div>
         </div>
       </section>
-    </>
+      </div>
+    </div>
   );
 }
