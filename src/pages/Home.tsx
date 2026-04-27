@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import {
-  ArrowRight, Sparkle, RocketLaunch, TrendUp, Cpu, Target, Eye, Heart, Calendar, MapPin, Globe,
+  ArrowRight, RocketLaunch, TrendUp, Cpu, Target, Eye, Heart, MapPin,
 } from "@phosphor-icons/react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -44,10 +44,6 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-md border border-black/5 text-slate-600 text-[10px] font-bold tracking-[0.2em] mb-10 uppercase shadow-sm">
-            <Sparkle className="w-3 h-3 text-mist-green" />
-            {t("hero.badge")}
-          </div>
           <h1 className="heading-xl mb-10 text-slate-900">
             {t("hero.heading1")} <br />
             <span className="cool-gradient-text">{t("hero.heading2")}</span>
@@ -90,10 +86,10 @@ const AboutPreview = () => {
       >
         <div className="flex flex-col lg:flex-row gap-20 mb-16">
           <div className="lg:w-1/2">
-            <motion.span variants={itemUp} className="text-mist-green font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">{t("home.about.badge")}</motion.span>
-            <motion.h2 variants={itemUp} className="heading-lg text-slate-900 mb-6">
-              {t("about.heading1")} <br /><span className="cool-gradient-text">{t("about.heading2")}</span>
-            </motion.h2>
+            <motion.h2 variants={itemUp} className="heading-lg text-slate-900 mb-4">{t("home.about.badge")}</motion.h2>
+            <motion.p variants={itemUp} className="text-lg md:text-xl text-slate-500 font-medium">
+              {t("about.heading1")} <span className="cool-gradient-text">{t("about.heading2")}</span>
+            </motion.p>
           </div>
           <motion.div variants={itemUp} className="lg:w-1/2 flex flex-col justify-end">
             <p className="text-slate-500 leading-relaxed font-medium mb-8">
@@ -171,7 +167,6 @@ const ServicesPreview = () => {
         viewport={{ once: true, amount: 0.1 }}
       >
         <div className="text-center mb-20">
-          <motion.span variants={itemUp} className="text-mist-blue font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">{t("home.services.badge")}</motion.span>
           <motion.h2 variants={itemUp} className="heading-lg text-slate-900">{t("home.services.heading")}</motion.h2>
         </div>
 
@@ -242,10 +237,6 @@ const EventsPreview = () => {
       >
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
           <div>
-            <motion.span variants={itemUp} className="text-mist-accent font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">
-              <Calendar className="w-3 h-3 inline-block mr-1.5 -mt-0.5" />
-              MIST Ai Talk
-            </motion.span>
             <motion.h2 variants={itemUp} className="heading-lg text-slate-900">{t("events.heading1")}</motion.h2>
           </div>
           <motion.div variants={itemFade}>
@@ -311,10 +302,6 @@ const OfficesPreview = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <div className="text-center mb-14">
-          <motion.span variants={itemUp} className="text-mist-blue font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">
-            <Globe className="w-3 h-3 inline-block mr-1.5 -mt-0.5" />
-            {t("global.badge")}
-          </motion.span>
           <motion.h2 variants={itemUp} className="heading-lg text-slate-900">{t("global.heading1")}<span className="cool-gradient-text">{t("global.heading2")}</span></motion.h2>
         </div>
 

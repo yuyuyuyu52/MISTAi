@@ -44,7 +44,7 @@ const translations = {
     en: "Pragmatic innovation, open collaboration, long-term thinking. We believe technology's value lies in real-world application, and collaboration outweighs competition.",
   },
   "home.services.badge": { zh: "我们的服务", en: "Our Services" },
-  "home.services.heading": { zh: "三大业务板块", en: "THREE BUSINESS LINES" },
+  "home.services.heading": { zh: "我们的三大服务", en: "Our Three Services" },
   "home.investment.highlight": {
     zh: "聚焦早期 AI 项目投资，成功孵化 SpatialWolk、瞰影科技等前沿项目。",
     en: "Focused on early-stage AI investment, having incubated cutting-edge projects like SpatialWolk and KanYing Tech.",
@@ -296,8 +296,8 @@ const translations = {
     en: "Through regular industry summits and our Knowledge Hub packed with insights, MIST Ai brings together top founders, experts, and investors, continuously delivering practical insights and core value for AI industrialization.",
   },
   "global.badge": { zh: "全球基础设施", en: "Global Infrastructure" },
-  "global.heading1": { zh: "连接全球", en: "CONNECTING GLOBAL" },
-  "global.heading2": { zh: "核心枢纽", en: "HUBS" },
+  "global.heading1": { zh: "我们的", en: "OUR" },
+  "global.heading2": { zh: "办公室", en: "OFFICES" },
   "global.desc": {
     zh: "MIST Ai 在全球核心科技枢纽设有办公室，链接最顶尖的技术资源与产业资本。我们不仅是连接者，更是 AI 时代的全球基础设施。",
     en: "MIST Ai has offices in key global tech hubs, connecting top technology resources and industry capital. We are not just connectors, but the global infrastructure of the AI era.",
@@ -375,7 +375,7 @@ const translations = {
     en: "Whether you're a tech entrepreneur seeking growth or industry capital looking for quality targets, MIST Ai is your most reliable partner.",
   },
   "footer.contactUs": { zh: "联系我们", en: "Contact Us" },
-  "footer.copyright": { zh: "© 2024 MIST Ai — 保留所有权利", en: "© 2024 MIST Ai — All Rights Reserved" },
+  "footer.copyright": { zh: "© 2026 MIST Ai — 保留所有权利 杭州迷雾智能科技有限公司", en: "© 2026 MIST Ai — All Rights Reserved Hangzhou Mist Intelligent Technology Co., Ltd." },
   "footer.privacy": { zh: "隐私政策", en: "Privacy" },
   "footer.terms": { zh: "服务条款", en: "Terms" },
 } satisfies Record<string, Record<Lang, string>>;

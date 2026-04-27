@@ -141,14 +141,12 @@ const Footer = () => {
           <div className="flex flex-col justify-between items-end">
             <div className="text-right">
               <span className="text-[10px] font-bold tracking-[0.2em] text-slate-300 uppercase mb-6 block">{t("footer.contactUs")}</span>
-              <a href="mailto:contact@mistai.com" className="font-display text-3xl font-bold text-slate-900 hover:text-mist-blue transition-colors">
-                contact@mistai.com
-              </a>
+              <span className="font-display text-3xl font-bold text-slate-900">
+                WeChat: MISTAi001
+              </span>
             </div>
-            <div className="mt-20 flex gap-10">
-              {["Twitter", "LinkedIn", "WeChat"].map(social => (
-                <a key={social} href="#" className="text-[10px] font-bold tracking-widest uppercase text-slate-400 hover:text-mist-blue transition-colors">{social}</a>
-              ))}
+            <div className="mt-10">
+              <img src="/redbook.png" alt="小红书" className="w-28 h-28 rounded-xl shadow-md" />
             </div>
           </div>
         </div>
