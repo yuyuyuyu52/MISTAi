@@ -222,14 +222,24 @@ const EventsPreview = () => {
   const navigate = useNavigate();
 
   const events = [
-    { titleKey: "events.event1.title" as const, dateKey: "events.event1.date" as const },
-    { titleKey: "events.event2.title" as const, dateKey: "events.event2.date" as const },
+    { titleKey: "events.event1.title" as const, dateKey: "events.event1.date" as const, img: "/event-12.jpg" },
+    { titleKey: "events.event2.title" as const, dateKey: "events.event2.date" as const, img: "/event-11.jpg" },
+    { titleKey: "events.event3.title" as const, dateKey: "events.event3.date" as const, img: "/event-10.jpg" },
+    { titleKey: "events.event4.title" as const, dateKey: "events.event4.date" as const, img: "/event-9.jpg" },
+    { titleKey: "events.event5.title" as const, dateKey: "events.event5.date" as const, img: "/event-8.jpg" },
+    { titleKey: "events.event6.title" as const, dateKey: "events.event6.date" as const, img: "/event-7.jpg" },
+    { titleKey: "events.event7.title" as const, dateKey: "events.event7.date" as const, img: "/event-6.jpg" },
+    { titleKey: "events.event8.title" as const, dateKey: "events.event8.date" as const, img: "/event-5.jpg" },
+    { titleKey: "events.event9.title" as const, dateKey: "events.event9.date" as const, img: "/event-4.jpg" },
+    { titleKey: "events.event10.title" as const, dateKey: "events.event10.date" as const, img: "/event-3.jpg" },
+    { titleKey: "events.event11.title" as const, dateKey: "events.event11.date" as const, img: "/event-2.jpg" },
+    { titleKey: "events.event12.title" as const, dateKey: "events.event12.date" as const, img: "/event-1.jpg" },
   ];
 
   return (
-    <section className="py-32 px-6">
+    <section className="py-32">
       <motion.div
-        className="max-w-5xl mx-auto"
+        className="max-w-5xl mx-auto px-6"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
@@ -255,29 +265,33 @@ const EventsPreview = () => {
         <motion.p variants={itemUp} className="text-slate-500 leading-relaxed font-medium mb-10 max-w-3xl">
           {t("events.desc")}
         </motion.p>
+      </motion.div>
 
-        <div className="flex flex-col gap-5">
-          {events.map((event) => (
-            <motion.div
-              key={event.titleKey}
-              variants={itemUp}
+      <div className="max-w-5xl mx-auto px-6 overflow-hidden">
+        <div
+          className="flex gap-6 animate-scroll"
+          style={{ width: "max-content" }}
+        >
+          {[...events, ...events].map((event, i) => (
+            <div
+              key={`${event.titleKey}-${i}`}
               onClick={() => navigate("/events")}
-              className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-7 rounded-2xl bg-white border border-slate-100 hover:shadow-xl hover:shadow-black/5 transition-all cursor-pointer group"
+              className="w-[320px] shrink-0 rounded-2xl bg-white border border-slate-100 hover:shadow-xl hover:shadow-black/5 transition-all cursor-pointer group overflow-hidden"
             >
-              <div>
-                <h4 className="font-display text-xl font-bold text-slate-900 mb-1.5 group-hover:text-mist-accent transition-colors">{t(event.titleKey)}</h4>
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={event.img} alt={t(event.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-6">
+                <h4 className="font-display text-base font-bold text-slate-900 mb-2 group-hover:text-mist-accent transition-colors">{t(event.titleKey)}</h4>
                 <div className="flex items-center gap-1.5 text-slate-400 text-xs font-medium">
                   <MapPin className="w-3 h-3" />
                   {t(event.dateKey)}
                 </div>
               </div>
-              <div className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-mist-accent group-hover:text-white transition-all shrink-0">
-                <ArrowRight className="w-4 h-4" />
-              </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
@@ -286,10 +300,10 @@ const OfficesPreview = () => {
   const { t } = useI18n();
 
   const offices = [
-    { city: t("global.hangzhou"), label: t("global.hangzhou.label"), color: "mist-green", flag: "🇨🇳" },
-    { city: t("global.paris"), label: t("global.paris.label"), color: "mist-blue", flag: "🇫🇷" },
-    { city: t("global.singapore"), label: t("global.singapore.label"), color: "mist-accent", flag: "🇸🇬" },
-    { city: t("global.sv"), label: t("global.sv.label"), color: "mist-green", flag: "🇺🇸" },
+    { city: t("global.hangzhou"), label: t("global.hangzhou.label"), color: "mist-green", flag: "🇨🇳", img: "/hangzhou.jpg" },
+    { city: t("global.paris"), label: t("global.paris.label"), color: "mist-blue", flag: "🇫🇷", img: "/paris.jpg" },
+    { city: t("global.singapore"), label: t("global.singapore.label"), color: "mist-accent", flag: "🇸🇬", img: "/singapore.jpg" },
+    { city: t("global.sv"), label: t("global.sv.label"), color: "mist-green", flag: "🇺🇸", img: "/silicon-valley.jpg" },
   ];
 
   return (
@@ -310,11 +324,16 @@ const OfficesPreview = () => {
             <motion.div
               key={office.city}
               variants={itemUp}
-              className="relative p-7 rounded-3xl bg-slate-50/50 border border-slate-100 hover:bg-white hover:shadow-xl hover:shadow-black/5 transition-all group text-center"
+              className="relative rounded-3xl bg-white border border-slate-100 hover:shadow-xl hover:shadow-black/5 transition-all group overflow-hidden"
             >
-              <div className="text-3xl mb-4">{office.flag}</div>
-              <h4 className={`font-display text-lg font-bold text-slate-900 mb-1 group-hover:text-${office.color} transition-colors`}>{office.city}</h4>
-              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">{office.label}</p>
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={office.img} alt={office.city} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-5 text-center">
+                <div className="text-xl mb-2">{office.flag}</div>
+                <h4 className={`font-display text-lg font-bold text-slate-900 mb-1 group-hover:text-${office.color} transition-colors`}>{office.city}</h4>
+                <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">{office.label}</p>
+              </div>
             </motion.div>
           ))}
         </div>

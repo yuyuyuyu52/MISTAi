@@ -49,7 +49,7 @@ const Nav = () => {
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-6 py-4 flex justify-between items-center ${scrolled ? "bg-white/70 backdrop-blur-xl border-b border-black/5" : "bg-transparent"}`}>
       <Link to="/" className="flex items-center gap-2">
         <img src="/mist_logo.png" alt="MIST Ai" className="h-10 w-10 object-contain" />
-        <span className="font-display text-2xl font-bold tracking-tighter text-slate-900">MIST Ai</span>
+        <span className="font-display text-2xl font-bold tracking-tighter cool-gradient-text">MIST Ai</span>
       </Link>
 
       <div className="hidden md:flex gap-8 items-center">
@@ -140,13 +140,20 @@ const Footer = () => {
           </div>
           <div className="flex flex-col justify-between items-end">
             <div className="text-right">
-              <span className="text-[10px] font-bold tracking-[0.2em] text-slate-300 uppercase mb-6 block">{t("footer.contactUs")}</span>
-              <span className="font-display text-3xl font-bold text-slate-900">
+              <span className="text-[10px] font-bold tracking-[0.2em] text-slate-600 uppercase mb-6 block">{t("footer.contactUs")}</span>
+              <span className="font-display text-xl font-bold cool-gradient-text">
                 WeChat: MISTAi001
               </span>
             </div>
-            <div className="mt-10">
-              <img src="/redbook.png" alt="小红书" className="w-28 h-28 rounded-xl shadow-md" />
+            <div className="mt-10 flex gap-6">
+              <div className="flex flex-col items-center gap-2">
+                <img src="/redbook.png" alt="小红书" className="w-28 h-28 rounded-xl shadow-md" />
+                <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">小红书</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <img src="/wechat.jpg" alt="微信公众号" className="w-28 h-28 rounded-xl shadow-md" />
+                <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">微信公众号</span>
+              </div>
             </div>
           </div>
         </div>
